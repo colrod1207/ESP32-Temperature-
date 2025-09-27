@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esp32-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: esp32-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  grafana:
+    build:
+      context: .
+      dockerfile: Dockerfile.grafana
+    container_name: esp32-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  mongo_data:
+  grafana_data:

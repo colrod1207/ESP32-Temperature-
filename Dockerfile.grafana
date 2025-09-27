@@ -1,0 +1,7 @@
+FROM grafana/grafana:10.4.2
+
+# Instalar el plugin MongoDB oficial desde el catálogo de Grafana
+RUN grafana cli plugins install grafana-mongodb-datasource
+
+# Cambiar al usuario grafana (seguridad)
+USER grafana

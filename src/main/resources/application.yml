@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/esp32db
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
